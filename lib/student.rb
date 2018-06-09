@@ -15,11 +15,15 @@ class Student
   def self.create_from_collection(students_array)
     students_array.each do |student hash|
       Student.new(student_hash)
-    end 
+    end
 
   end
 
   def add_student_attributes(attributes_hash)
+    attributes_hash.each do |attr, value|
+      self.send("#{attr}=", value)
+    end
+    self 
 
   end
 
