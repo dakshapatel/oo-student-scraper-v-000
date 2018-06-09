@@ -30,10 +30,6 @@ class Scraper
         student[:github] = link
       elsif link.include?("twitter")
         student[:twitter] = link
-      elsif link.include?("profile_quote")
-        student[:profile_quote] = link
-      elsif link.include?("bio")
-        student[:bio] = link
       else
         student[:blog] = link
       end
@@ -44,7 +40,6 @@ class Scraper
       if profile_page.css("div.bio-content.content-holder div.description-holder p")
 
         student
-
 
   end
 
