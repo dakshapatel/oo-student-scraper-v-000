@@ -7,13 +7,15 @@ class Student
   def initialize(student_hash)
     student_hash.each do |attribute, value|
       self.send("#{attribute}=", value)
-    end 
+    end
     @@all <<self
 
   end
 
   def self.create_from_collection(students_array)
-    #iterate over the array of hashes and create a new individual student using each hash.
+    students_array.each do |student hash|
+      Student.new(student_hash)
+    end 
 
   end
 
