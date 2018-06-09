@@ -9,6 +9,7 @@ class Student
   end
 
   def self.create_from_collection(students_array)
+    #iterate over the array of hashes and create a new individual student using each hash. 
     
   end
 
@@ -17,6 +18,7 @@ class Student
   end
 
   def self.all
+    @@all
     
   end
 end
