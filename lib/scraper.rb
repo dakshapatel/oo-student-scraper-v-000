@@ -36,6 +36,7 @@ class Scraper
     else
       student[:blog] = link
     end
+    student << (:linkedin, :github, :twitter, :profile_quote, :bio, :blog)
 
   end
   end
