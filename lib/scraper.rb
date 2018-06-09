@@ -20,23 +20,29 @@ class Scraper
 
   #scraping an individual student's profile page to get further information about that student.
   def self.scrape_profile_page(profile_url)
-    profile_page = Nokogiri::HTML(open(profile_url))
-    student = {}
-    links =  profile_page.css(".social-icon-container").map do |link|
-    if link.include?("linkedin")
-      student[:linkedin] = link
-    elsif link.include?("github")
-      student[:github] = link
-    elsif link.include?("twitter")
-      student[:twitter] = link
-    elsif link.include?("profile_quote")
-      student[:profile_quote] = link
-    elsif link.include?("bio")
-      student[:bio] = link
-    else
-      student[:blog] = link
-    end
-    student << {:linkedin, :github, :twitter, :profile_quote, :bio, :blog}
+      profile_page = Nokogiri::HTML(open(profile_url))
+      student = {}
+      links =  profile_page.css(".social-icon-container").map do |link|
+      if link.include?("linkedin")
+        student[:linkedin] = link
+      elsif link.include?("github")
+        student[:github] = link
+      elsif link.include?("twitter")
+        student[:twitter] = link
+      elsif link.include?("profile_quote")
+        student[:profile_quote] = link
+      elsif link.include?("bio")
+        student[:bio] = link
+      else
+        student[:blog] = link
+      end
+  end
+      student[:profile_quote] = profile_page.css(".profile-quote").text
+        if profile_page.css(".profile-quote")
+      student[:bio] = profile_page.css("div.bio-content.content-holder div.description-holder p").text
+      if profile_page.css("div.bio-content.content-holder div.description-holder p")
+
+        student
 
   end
   end
